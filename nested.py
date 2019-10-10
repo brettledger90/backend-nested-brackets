@@ -6,8 +6,9 @@ Module docstring: One line description of what your program does.
 __author__ = "Your Github Username"
 
 import sys
-opener = ['(','[','{','<','(*' ]
-closer = [')', ']','}','>','*)']
+opener = ['(', '[', '{', '<', '(*']
+closer = [')', ']', '}', '>', '*)']
+
 
 def my_function(line):
     current_bracket = []
@@ -63,11 +64,18 @@ def my_function(line):
                 index += 1
 
     if len(current_bracket) == 0:
-        print('YES')
-    else:
-        print('No' + str(index + 1))
-            
+        b = 'YES'+'\n'
+        output_text('output.txt', b)
 
+    else:
+        s = str(index + 1)
+        a = 'NO '+s+'\n'
+        output_text('output.txt', a)
+
+
+def output_text(file, text):
+    with open(file, 'a+') as f:
+        f.write(text)
 
 
 def read_file(filename):
@@ -77,13 +85,11 @@ def read_file(filename):
         for i in content:
             my_function(i)
 
+
 def main(args):
+    print(args)
     read_file(args[1])
-    
-    
 
-
-    
 
 if __name__ == '__main__':
     main(sys.argv)
